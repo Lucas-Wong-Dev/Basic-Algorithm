@@ -3,7 +3,6 @@
 // 借鉴简单插入排序法
 // 如果我们不需要保证相对有序，则可以不用依次前移，而是直接与未排好序的部分的第一个元素进行交换
 #include <iostream>
-#include <iostream>
 using namespace std;
 int main()
 {
@@ -19,10 +18,14 @@ int main()
 
     for (int i = 0; i < len; i++)
     {
-        if (array[i] < 0)
+
+        if (array[i] < 0) // 如果遇到了负的数组元素，则将该元素依次前移到分界指针指向的元素之前
         {
-            swap(array[i], array[index]);
-            index++;
+            for (int j = i; j > index; j--)
+            {
+                swap(array[j], array[j - 1]);
+            }
+            index++; // 分界指针后移
         }
     }
 

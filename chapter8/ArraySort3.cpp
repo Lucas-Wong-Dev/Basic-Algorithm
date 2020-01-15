@@ -1,8 +1,7 @@
 // 数组正负值排序
 // 暂时将0算为正数
-// 借鉴简单插入排序法
-// 如果我们不需要保证相对有序，则可以不用依次前移，而是直接与未排好序的部分的第一个元素进行交换
-#include <iostream>
+// 借鉴快速排序法，其实就是双指针法
+// 无法保证相对有序
 #include <iostream>
 using namespace std;
 int main()
@@ -17,12 +16,20 @@ int main()
     }
     cout << endl;
 
-    for (int i = 0; i < len; i++)
+    int i = 0, j = len - 1;
+    while (i < j)
     {
-        if (array[i] < 0)
+        while (array[i] < 0 && i < j)
         {
-            swap(array[i], array[index]);
-            index++;
+            i++;
+        }
+        while (array[j] >= 0 && i < j)
+        {
+            j--;
+        }
+        if (i < j)
+        {
+            swap(array[i], array[j]);
         }
     }
 
